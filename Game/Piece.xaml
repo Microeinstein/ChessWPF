@@ -1,0 +1,120 @@
+﻿<local:Slab x:Name="PieceWPF" x:Class="ChessWPF.Piece"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ChessWPF"
+             Width="50" Height="50" RenderTransformOrigin="0.5,0.5"
+             HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Collapsed">
+    <UserControl.Resources>
+        <Storyboard x:Key="Location" Storyboard.TargetName="PieceWPF" Storyboard.TargetProperty="Margin" Completed="stopLocation">
+            <ThicknessAnimation Duration="0:0:0.5">
+                <ThicknessAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </ThicknessAnimation.EasingFunction>
+            </ThicknessAnimation>
+        </Storyboard>
+        <Storyboard x:Key="Eat" Completed="_delete">
+            <DoubleAnimation Storyboard.TargetName="circleOn" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0"/>
+            <DoubleAnimation Storyboard.TargetName="pieceScale" Storyboard.TargetProperty="ScaleX" To="2" Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="pieceScale" Storyboard.TargetProperty="ScaleY" To="2" Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="PieceWPF" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="Hover" Storyboard.TargetName="circleOn" Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation To="0.5" Duration="0:0:0.1">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="Leave" Storyboard.TargetName="circleOn" Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation To="0" Duration="0:0:0.1">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="Press" Storyboard.TargetName="circleOn" Storyboard.TargetProperty="Opacity">
+            <DoubleAnimation To="0.8" Duration="0:0:0.37">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="Promote" Completed="_promote">
+            <DoubleAnimation Storyboard.TargetName="glyphRotation" Storyboard.TargetProperty="Angle" From="0" To="1080" Duration="0:0:1.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="newRotation" Storyboard.TargetProperty="Angle" From="0" To="1080" Duration="0:0:1.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="glyph" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="newGlyph" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="InDanger" Storyboard.TargetName="circleDanger" Storyboard.TargetProperty="Opacity" AutoReverse="True" Completed="dangerloop">
+            <DoubleAnimation From="0" To="0.8" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform x:Name="pieceScale"/>
+            <RotateTransform x:Name="Rotation"/>
+        </TransformGroup>
+    </UserControl.RenderTransform>
+    <Grid>
+        <Ellipse x:Name="circleDanger" Margin="{Binding Path=Settings._Margin}" Fill="#E5FF406B" Opacity="0" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.8" ScaleY="0.8"/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <Ellipse x:Name="circleOn" Margin="{Binding Path=Settings._Margin}" Opacity="0" Fill="White"/>
+        <TextBlock x:Name="glyph" FontFamily="pack://application:,,,/Resources/#Chess Cases" FontSize="42.667"
+                   TextAlignment="Center" Margin="0,2.5,0,0" RenderTransformOrigin="0.5,0.5" Text="♪">
+            <TextBlock.RenderTransform>
+                <RotateTransform x:Name="glyphRotation" Angle="0"/>
+            </TextBlock.RenderTransform>
+            <TextBlock.Effect>
+                <DropShadowEffect x:Name="shadow" ShadowDepth="0"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock x:Name="newGlyph" FontFamily="pack://application:,,,/Resources/#Chess Cases" FontSize="42.667"
+                   TextAlignment="Center" Margin="0,2.5,0,0" Text="♪" RenderTransformOrigin="0.5,0.5" Opacity="0" Visibility="Collapsed">
+            <TextBlock.RenderTransform>
+                <RotateTransform x:Name="newRotation" Angle="0"/>
+            </TextBlock.RenderTransform>
+            <TextBlock.Effect>
+                <DropShadowEffect x:Name="newShadow" ShadowDepth="0"/>
+            </TextBlock.Effect>
+        </TextBlock>
+    </Grid>
+</local:Slab>

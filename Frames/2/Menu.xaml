@@ -1,0 +1,33 @@
+﻿<local:Frame x:Class="ChessWPF.Menu" x:Name="MenuWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChessWPF"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Storyboard x:Key="Puffy">
+            <PointAnimation Storyboard.TargetName="_pt2" Storyboard.TargetProperty="Point" To="400,0" Duration="0:0:1"/>
+            <PointAnimation Storyboard.TargetName="_pt3" Storyboard.TargetProperty="Point" To="0,400" Duration="0:0:1"/>
+            <PointAnimation Storyboard.TargetName="_pt1" Storyboard.TargetProperty="Point" To="0,0" BeginTime="0:0:1" Duration="0:0:1"/>
+            <PointAnimation Storyboard.TargetName="_pt2" Storyboard.TargetProperty="Point" To="0,0" BeginTime="0:0:1" Duration="0:0:1"/>
+            <PointAnimation Storyboard.TargetName="_pt3" Storyboard.TargetProperty="Point" To="0,0" BeginTime="0:0:1" Duration="0:0:1"/>
+            <PointAnimation Storyboard.TargetName="_pt4" Storyboard.TargetProperty="Point" To="0,0" BeginTime="0:0:1" Duration="0:0:1"/>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource Puffy}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <UserControl.Clip>
+        <PathGeometry>
+            <PathFigure IsClosed="True" StartPoint="0,0">
+                <LineSegment x:Name="_pt1" Point="400,0"/>
+                <LineSegment x:Name="_pt2" Point="400,400"/>
+                <LineSegment x:Name="_pt3" Point="400,400"/>
+                <LineSegment x:Name="_pt4" Point="0,400"/>
+            </PathFigure>
+        </PathGeometry>
+    </UserControl.Clip>
+</local:Frame>

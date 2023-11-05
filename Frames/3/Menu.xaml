@@ -1,0 +1,73 @@
+﻿<local:Frame x:Class="ChessWPF.Menu" x:Name="MenuWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChessWPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             FontFamily="pack://application:,,,/Resources/#Roboto Regular"
+             mc:Ignorable="d" Opacity="1" Visibility="Visible" Background="#303030">
+    <UserControl.Resources>
+        <Storyboard x:Key="localShow">
+            <DoubleAnimation Storyboard.TargetName="gLocal" Storyboard.TargetProperty="Height"
+                                To="80" Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="localLeave">
+            <DoubleAnimation Storyboard.TargetName="gLocal" Storyboard.TargetProperty="Height"
+                                To="45" Duration="0:0:0.5">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid>
+        <TextBlock TextWrapping="Wrap" TextAlignment="Center"
+			Text="Chess" FontSize="96" FontFamily="pack://application:,,,/Resources/#CAC Champagne"
+			VerticalAlignment="Top" Margin="0,50,0,0"/>
+        <Button x:Name="bInfo" Width="40" Height="40"
+        	 HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10"
+            Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+            <materialDesign:PackIcon Kind="Information" Width="24" Height="24"/>
+        </Button>
+        <Button x:Name="bSettings" Width="40" Height="40" IsEnabled="False"
+                HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"
+                Style="{DynamicResource MaterialDesignFloatingActionButton}">
+            <materialDesign:PackIcon Kind="Settings" Width="24" Height="24"/>
+        </Button>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,250,0,0" Orientation="Vertical">
+            <Grid x:Name="gLocal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="45">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,8" Width="154" >
+                    <Button x:Name="bLocalWhite" Width="76" Height="32"
+        				    Content="White" FontSize="13" FontWeight="Normal" Foreground="White"
+        				    HorizontalAlignment="Left" VerticalAlignment="Center"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="ButtonBase.Click">
+                                <BeginStoryboard Storyboard="{StaticResource localLeave}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button x:Name="bLocalBlack" Width="76" Height="32"
+        				    Content="Black" FontSize="13" FontWeight="Normal" Foreground="White"
+        				    HorizontalAlignment="Right" VerticalAlignment="Center"
+                            Style="{DynamicResource MaterialDesignFlatButton}">
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="ButtonBase.Click">
+                                <BeginStoryboard Storyboard="{StaticResource localLeave}"/>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </Grid>
+                <Button x:Name="bLocal" Content="Local game" FontSize="14" FontWeight="Normal"
+        			    VerticalAlignment="Top" HorizontalAlignment="Center" Width="162" Height="36"/>
+            </Grid>
+            <Button x:Name="bRemote" Width="162" Height="36" IsEnabled="False"
+            	    Content="Remote game" FontSize="14" FontWeight="Normal"/>
+        </WrapPanel>
+    </Grid>
+</local:Frame>

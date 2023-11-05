@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="ChessWPF.PlayMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChessWPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             FontFamily="#Roboto Regular" mc:Ignorable="d"
+             Height="75" Width="400" Background="{x:Null}">
+    <Grid>
+        <TextBlock x:Name="txtInfo" FontSize="13" Padding="8pt,0,10,0"  Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Left" Width="156" TextOptions.TextFormattingMode="Display">
+            <Run Text="Turn:&#x9;"/><Run x:Name="txtT" Text="White"/><LineBreak/>
+            <Separator Width="135" Height="3"/><LineBreak/>
+            <Run Text="White:&#x9;"/><Run x:Name="timeW" Text="00:00:00"/><LineBreak/>
+            <Run Text="Black:&#x9;"/><Run x:Name="timeB" Text="00:00:00"/>
+        </TextBlock>
+
+        <Button x:Name="bUndo" Margin="0,0,48,0" IsEnabled="False"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" ToolTip="Undo">
+            <materialDesign:PackIcon Kind="Undo" Width="24" Height="24"/>
+        </Button>
+        <Button x:Name="bRedo" Margin="48,0,0,0" IsEnabled="False"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" ToolTip="Redo">
+            <materialDesign:PackIcon Kind="Redo" Width="24" Height="24"/>
+        </Button>
+
+        <Button x:Name="bDraw" Margin="0,0,74,0" IsEnabled="False"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                Style="{DynamicResource MaterialDesignFloatingActionButton}" ToolTip="Draw">
+            <materialDesign:PackIcon Kind="Percent" Width="24" Height="24"/>
+        </Button>
+        <Button x:Name="bGiveUp" Margin="0,0,10,0"
+                HorizontalAlignment="Right" VerticalAlignment="Center"
+                Style="{DynamicResource MaterialDesignFloatingActionButton}" ToolTip="Give up">
+            <materialDesign:PackIcon x:Name="imgExit" Kind="Flag" Width="24" Height="24"/>
+        </Button>
+    </Grid>
+</UserControl>

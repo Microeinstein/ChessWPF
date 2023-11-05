@@ -1,0 +1,92 @@
+﻿<local:Slab x:Name="TraitWPF" x:Class="ChessWPF.Trait"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChessWPF"
+             Width="50" Height="50" RenderTransformOrigin="0.5,0.5"
+             HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Collapsed">
+    <UserControl.Resources>
+        <Storyboard x:Key="MoveOn" Storyboard.TargetName="moveScale">
+            <DoubleAnimation Storyboard.TargetProperty="ScaleX" To="0.8" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetProperty="ScaleY" To="0.8" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="MoveOff" Storyboard.TargetName="moveScale" Completed="_invisible">
+            <DoubleAnimation Storyboard.TargetProperty="ScaleX" To="0" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="LastOn" Storyboard.TargetName="lastScale">
+            <DoubleAnimation Storyboard.TargetProperty="ScaleX" To="0.8" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetProperty="ScaleY" To="0.8" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="LastOff" Storyboard.TargetName="lastScale" Completed="_invisible">
+            <DoubleAnimation Storyboard.TargetProperty="ScaleX" To="0" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetProperty="ScaleY" To="0" Duration="0:0:0.3">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseIn"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid>
+        <Ellipse x:Name="circleMove" Margin="{Binding Path=Settings._Margin}" Fill="#994040FF" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="moveScale" ScaleX="0" ScaleY="0"/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <!--<Path x:Name="circleLast" Margin="{Binding Path=Settings._Margin}" Fill="#99FFFF40" RenderTransformOrigin="0.5,0.5">
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Exclude">
+                    <CombinedGeometry.Geometry1>
+                        <EllipseGeometry x:Name="lastC1"/>
+                    </CombinedGeometry.Geometry1>
+                    <CombinedGeometry.Geometry2>
+                        <EllipseGeometry x:Name="lastC2"/>
+                    </CombinedGeometry.Geometry2>
+                </CombinedGeometry>
+            </Path.Data>
+            <Path.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="lastScale" ScaleX="0" ScaleY="0"/>
+                </TransformGroup>
+            </Path.RenderTransform>
+        </Path>-->
+        <Ellipse x:Name="circleLast" Margin="{Binding Path=Settings._Margin}" Fill="#99409A40" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform x:Name="lastScale" ScaleX="0" ScaleY="0"/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+        </Ellipse>
+    </Grid>
+</local:Slab>
