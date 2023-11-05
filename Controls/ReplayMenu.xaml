@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ChessWPF.ReplayMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChessWPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             FontFamily="#Roboto Regular" mc:Ignorable="d"
+             Height="75" Width="400" Background="{x:Null}">
+    <Grid>
+        <Button x:Name="bPrev" Margin="0,0,48,0" IsEnabled="False"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" ToolTip="Prevorious action">
+            <materialDesign:PackIcon Kind="SkipPrevious" Width="24" Height="24"/>
+        </Button>
+        <Button x:Name="bNext" Margin="48,0,0,0" IsEnabled="False"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                Style="{DynamicResource MaterialDesignFloatingActionMiniButton}" ToolTip="Next action">
+            <materialDesign:PackIcon Kind="SkipNext" Width="24" Height="24"/>
+        </Button>
+    </Grid>
+</UserControl>

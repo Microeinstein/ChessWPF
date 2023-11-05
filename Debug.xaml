@@ -1,0 +1,26 @@
+﻿<Window x:Class="ChessWPF.Debug"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChessWPF"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d" ResizeMode="CanMinimize"
+        FontFamily="#Roboto Regular"
+        Icon="pack://application:,,,/Resources/checkerboard.ico"
+        Background="#303030" Foreground="#fafafa" Height="210" Width="168" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,115,0,0">
+            <Run Text="Turn:&#x9;&#x9;"/><Run x:Name="txtT" Text="White" Foreground="#FFDBFF61"/><LineBreak/>
+            <Run Text="History count:&#x9;"/><Run x:Name="txtH" Text="0" Foreground="#FF61CDFF"/><LineBreak/>
+            <Run Text="Actions count:&#x9;"/><Run x:Name="txtA" Text="0" Foreground="#FFFF6B6B"/>
+        </TextBlock>
+        <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+            <CheckBox x:Name="cNoTurns" Content="No turns"/>
+            <CheckBox x:Name="cDelPieces" Content="Can delete pieces"/>
+            <CheckBox x:Name="cDMoves" Content="All normal moves"/>
+            <CheckBox x:Name="cDSeries" Content="All series of moves"/>
+            <CheckBox x:Name="cDSpecial" Content="All special moves"/>
+        </WrapPanel>
+    </Grid>
+</Window>
